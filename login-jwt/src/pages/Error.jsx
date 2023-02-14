@@ -4,5 +4,5 @@ import React from "react";
 // import ECss from "./Css/Error.module.css";
 
 export default function Error() {
-  return <div className={ECss.mDiv}>Error 404</div>;
+  return <div>Error 404</div>;
 }
