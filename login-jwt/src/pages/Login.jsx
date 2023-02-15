@@ -1,19 +1,23 @@
 import React from 'react'
-import LoginCss from './css/Login.css'
+import {useState} from 'react'
+import './css/Login.css'
 export default function Login() {
-    console.log("first")
+    // const [submit ,setsubmit] = useState({
+    //     ""
+    // })
   return (
     <>
-    <div className={LoginCss.loginextdiv}>
-        <div className={LoginCss.loginIntdiv}>
-            <form className={LoginCss.form}>
+    <div className= "loginextdiv">
+        <div className= "loginIntdiv">
+            <p className="login">LOGIN</p>
+            <form className= "form">
             <label>
-                    Username : <input type="text" name="usern" id="usern" />
+                    <p>Username :</p> <input type="text" name="usern" id="usern" />
                 </label>
                 <label>
-                    password : <input type="password" name="usern" id="userp" />
+                    <p>password :</p> <input type="password" name="usern" id="userp" />
                 </label>
-                <input type="submit" value="Login" />
+                <input type="submit" value="Login"  />
             </form>
         </div>
     </div>
