@@ -1,7 +1,9 @@
 import React from 'react'
 import {useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 import './css/Login.css'
-export default function Login() {
+export default function Register() {
+    const navi =  useNavigate()
     const [submit ,setsubmit] = useState({
         "user" : "",
         "email": "",
@@ -9,7 +11,7 @@ export default function Login() {
     })
     async function registerUser(e) {
         e.preventDefault();
-       const responce = await fetch('http://localhost:8080/api/register',
+       const response = await fetch('http://localhost:8080/api/register',
        {
             method: 'POST' ,
             headers : {
@@ -19,7 +21,11 @@ export default function Login() {
                 submit,
             }),
         })
-        const data = await Response.json()
+        const data = await response.json()
+        if (data.status == 'ok') {
+            navi('/login')
+        }
+
         console.log(data)
     }
   return (

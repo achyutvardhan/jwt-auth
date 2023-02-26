@@ -1,7 +1,9 @@
 import React ,{useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 import './css/Login.css'
 
 export default function Login() {
+    const navi = useNavigate();
     const [log, setlog] = useState({
         email : "",
         pass : ""
@@ -9,7 +11,7 @@ export default function Login() {
 
     const loginUser = async(e)=>{
         e.preventDefault();
-        const respone = await fetch('http://localhost:8080/api/login',
+        const response = await fetch('http://localhost:8080/api/login',
         {
             method : 'POST',
             headers : {
@@ -18,8 +20,15 @@ export default function Login() {
             body: JSON.stringify(log)
         }
         )
-        const data = await Response.json();
-        console.log(data)
+       
+        const data = await response.json();
+        if (data.user) {
+            localStorage.setItem('token',data.user)
+            alert('login successful')
+            navi('/home')
+        }else{
+            alert('Invalid credential')
+        }
     }
   return (
     <>

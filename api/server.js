@@ -4,8 +4,8 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const User = require("./models/user.model");
 const jwt = require("jsonwebtoken");
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 
 mongoose.connect("mongodb://localhost:27017/full-mern-jwt");
 
@@ -28,7 +28,12 @@ app.post("/api/login", async (req, res) => {
     password: req.body.pass,
   });
   if (result) {
-    return res.json({ status: "ok", user: "true" });
+      const token  = jwt.sign({
+        email : result.email,
+        name : result.name
+      }, 'secret123')
+
+    return res.json({ status: "ok", user: token });
   } else {
     return res.json({ status: "error", user: "false" });
   }
