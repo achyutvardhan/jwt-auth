@@ -1,5 +1,6 @@
 import React ,{useEffect} from 'react'
-import jwt from 'jsonwebtoken'
+// import jwt from 'jsonwebtoken'
+import jwt from 'jwt-decode'
 import { useNavigate } from 'react-router-dom'
 export default function Home() {
   const navi = useNavigate()
@@ -19,7 +20,7 @@ export default function Home() {
        useEffect(()=>{
            const token = localStorage.getItem('token')
            if (token) {
-              const user =  jwt.decode(token)
+              const user =  jwt(token)
               if(!user)
               {
                 localStorage.removeItem('token')
